@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { motion } from "framer-motion";
 
 const plans = {
   customWebsite: [
@@ -109,7 +110,12 @@ const plans = {
 };
 
 const PlanCard = ({ plan }) => (
-  <div className="flex flex-col justify-between p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition duration-300">
+  <motion.div
+    className="flex flex-col justify-between p-6 bg-gray-800 rounded-lg shadow-lg hover:shadow-xl transition duration-300"
+    initial={{ opacity: 0 }}
+    whileInView={{ opacity: 1 }}
+    transition={{ duration: 0.5 }}
+  >
     <h3 className="text-2xl font-bold text-white mb-2">{plan.title}</h3>
     <h4 className="text-3xl font-extrabold text-blue-500">{plan.price}</h4>
     <p className="mt-2 text-gray-400">{plan.description}</p>
@@ -127,7 +133,7 @@ const PlanCard = ({ plan }) => (
     <button className="mt-6 py-2 px-4 bg-blue-500 text-white rounded-lg hover:bg-blue-600">
       Get Started
     </button>
-  </div>
+  </motion.div>
 );
 
 const Plans = () => {
@@ -139,9 +145,6 @@ const Plans = () => {
         {/* Heading */}
         <div className="text-center mb-12">
           <h2 className="text-4xl font-extrabold text-white mb-4">Our Plans</h2>
-          {/* <p className="text-lg text-gray-400">
-            Our Website & E-Commerce Plans
-          </p> */}
           <p className="text-lg text-gray-400">
             Choose the perfect plan to take your business online!
           </p>
@@ -171,12 +174,18 @@ const Plans = () => {
           </button>
         </div>
 
-        {/* Plan Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        {/* Plan Cards (with fade animation on tab change) */}
+        <motion.div
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
+          key={activeTab} // This triggers the animation on tab change
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.5 }}
+        >
           {plans[activeTab].map((plan, index) => (
             <PlanCard key={index} plan={plan} />
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -18,7 +18,7 @@ const Navbar = () => {
       <nav className="bg-richBlue text-softBeige py-4">
         <div className="container mx-auto flex justify-between items-center px-4">
           {/* Logo */}
-          <div className="text-2xl font-bold">WebCrafty</div>
+          <div className="text-2xl font-bold">WebCraftery</div>
 
           {/* Nav Items for Desktop */}
           <div className="hidden md:flex space-x-6 font-bold items-center">

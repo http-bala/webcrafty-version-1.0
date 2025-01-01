@@ -1,13 +1,31 @@
 import React from "react";
+import { motion } from "framer-motion";
 
-const AwardStep = ({ number, title, description }) => (
-  <div className="flex flex-col items-center text-center px-6 py-8 bg-white shadow-lg rounded-lg hover:shadow-xl transition transform hover:-translate-y-2">
-     <div className="flex items-center justify-center w-16 h-16 mb-4 rounded-full border-2 border-gray-500">
+const AwardStep = ({ number, title, description, custom }) => (
+  <motion.div
+    className="flex flex-col items-center text-center px-6 py-8 bg-white shadow-lg rounded-lg hover:shadow-xl transition transform hover:-translate-y-2"
+    initial={{ opacity: 0, y: 50 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{
+      duration: 0.6,
+      ease: "easeOut",
+      delay: custom * 0.2, // Stagger animation delay based on index
+    }}
+    viewport={{ once: true, amount: 0.2 }} // Trigger animation when 20% of it is visible
+  >
+    <motion.div
+      className="flex items-center justify-center w-16 h-16 mb-4 rounded-full border-2 border-gray-500"
+      whileHover={{ scale: 1.2, rotate: 360 }} // On hover, scale and rotate the number circle
+      transition={{
+        duration: 0.3,
+        ease: "easeInOut",
+      }}
+    >
       <span className="text-2xl font-bold text-left">{number}</span>
-    </div>
+    </motion.div>
     <h3 className="text-xl font-bold text-gray-900">{title}</h3>
     <p className="mt-2 text-gray-600">{description}</p>
-  </div>
+  </motion.div>
 );
 
 const Awards = () => {
@@ -22,13 +40,13 @@ const Awards = () => {
       number: "02",
       title: "Concept Development",
       description:
-        "Meet with the client to gather detailed information about their brand, objectives, & expectations.",
+        "Crafting innovative concepts based on your objectives and brand vision to make the idea come to life.",
     },
     {
       number: "03",
       title: "Design & Production",
       description:
-        "Meet with the client to gather detailed information about their brand, objectives, & expectations.",
+        "Execute the idea with detailed design and production to ensure a high-quality final product.",
     },
   ];
 
@@ -48,6 +66,7 @@ const Awards = () => {
               number={step.number}
               title={step.title}
               description={step.description}
+              custom={index} // Pass index for staggered animation
             />
           ))}
         </div>

@@ -7,15 +7,37 @@ import {
   FaLaptopCode,
   FaMobileAlt,
 } from "react-icons/fa";
+import { motion } from "framer-motion";
 
-const ServiceCard = ({ icon: Icon, title, description }) => (
-  <div className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition">
-    <div className="text-sky-600 text-4xl mb-4">
+const ServiceCard = ({ icon: Icon, title, description, custom }) => (
+  <motion.div
+    className="bg-white shadow-lg rounded-lg p-6 hover:shadow-xl transition transform hover:-translate-y-2 hover:scale-105"
+    whileInView={{ opacity: 1, y: 0 }}
+    initial={{ opacity: 0, y: 50 }}
+    transition={{
+      duration: 0.6,
+      ease: "easeOut",
+      delay: custom * 0.2,
+    }}
+    viewport={{ once: true, amount: 0.2 }} // Animation triggers once, 20% in view
+  >
+    <motion.div
+      className="text-sky-600 text-4xl mb-4"
+      whileHover={{
+        // rotate: 360, // Rotate the icon on hover
+        scale: 1.2,  // Increase scale on hover
+      }}
+      transition={{
+        type: "spring", bounce: 0.25,
+        duration: 0.5,
+        ease: "easeInOut",
+      }}
+    >
       <Icon />
-    </div>
+    </motion.div>
     <h3 className="text-xl font-bold text-sky-600">{title}</h3>
     <p className="mt-2 text-gray-600">{description}</p>
-  </div>
+  </motion.div>
 );
 
 const Services = () => {
@@ -57,13 +79,12 @@ const Services = () => {
         "Innovative apps for your growing business. We develop intuitive, functional mobile apps for iOS and Android that engage and satisfy your customers.",
     },
   ];
-  
 
   return (
     <section className="bg-gray-50 py-16">
       <div className="container mx-auto px-4">
         <h2 className="text-center text-5xl font-extrabold text-gray-900 mb-14">
-        Explore Unique Digital Agency Services
+          Explore Unique Digital Agency Services
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
@@ -72,6 +93,7 @@ const Services = () => {
               icon={service.icon}
               title={service.title}
               description={service.description}
+              custom={index} // Pass index for staggered animation
             />
           ))}
         </div>
