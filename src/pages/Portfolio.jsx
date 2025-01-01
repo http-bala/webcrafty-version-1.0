@@ -1,6 +1,7 @@
-import React, { useState } from 'react'
-import PageHeader from '../components/PageHeader'
-import aboutImage from "../assets/images/about-1.jpg"
+// src/pages/Portfolio.jsx
+import React, { useState } from 'react';
+import PageHeader from '../components/PageHeader';
+import aboutImage from "../assets/images/about-1.jpg";
 
 const Portfolio = () => {
   // Project categories
@@ -43,7 +44,6 @@ const Portfolio = () => {
       link: '/project-5',
       category: 'Content Writing',
     },
-    // Add more projects as needed
   ];
 
   // State to track selected category
@@ -60,19 +60,18 @@ const Portfolio = () => {
       <PageHeader title="Portfolio" backgroundImage={aboutImage} />
     <section className="py-16 bg-gray-50" id="portfolio">
       <div className="container mx-auto px-4 text-center">
-        <h2 className="text-4xl font-bold text-gray-800 mb-8">My Portfolio</h2>
+        {/* <h2 className="text-4xl font-bold text-gray-800 mb-8">My Portfolio</h2> */}
 
         {/* Category Tabs */}
-        <div className="mb-8">
-          <ul className="flex justify-center space-x-6">
+        <div className="mb-8 overflow-x-auto">
+          <ul className="flex space-x-4 whitespace-nowrap">
             {categories.map(category => (
               <li key={category}>
                 <button
-                  className={`px-4 py-2 font-medium text-gray-800 ${
-                    selectedCategory === category
-                      ? 'bg-blue-500 text-white rounded-lg'
-                      : 'hover:bg-blue-500 hover:text-white transition'
-                  }`}
+                  className={`px-4 py-2 text-base font-medium rounded-lg transition-all duration-300 
+                    ${selectedCategory === category 
+                      ? 'bg-gradient-to-r from-blue-500 to-blue-600 text-white border-gray-300 shadow-lg'
+                      : 'bg-white text-gray-800 hover:bg-gradient-to-r hover:from-blue-500 hover:to-blue-600 hover:text-white border border-gray-300'}`}
                   onClick={() => setSelectedCategory(category)}
                 >
                   {category}
@@ -83,7 +82,7 @@ const Portfolio = () => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
           {filteredProjects.map((project, index) => (
             <div
               key={index}
@@ -117,4 +116,4 @@ const Portfolio = () => {
   );
 }
 
-export default Portfolio
+export default Portfolio;
