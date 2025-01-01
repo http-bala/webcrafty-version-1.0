@@ -63,7 +63,7 @@ const Portfolio = () => {
         {/* <h2 className="text-4xl font-bold text-gray-800 mb-8">My Portfolio</h2> */}
 
         {/* Category Tabs */}
-        <div className="mb-8 overflow-x-auto">
+        <div className="mb-8 overflow-x-auto scrollbar-hidden">
           <ul className="flex space-x-4 whitespace-nowrap">
             {categories.map(category => (
               <li key={category}>

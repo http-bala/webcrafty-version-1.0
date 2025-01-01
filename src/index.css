@@ -11,6 +11,16 @@
     font-family: sans-serif, serif;
 }
 
+/* Hide the scrollbar */
+.scrollbar-hidden::-webkit-scrollbar {
+    display: none;
+  }
+  
+  .scrollbar-hidden {
+    -ms-overflow-style: none;  /* For Internet Explorer and Edge */
+    scrollbar-width: none;  /* For Firefox */
+  }
+  
 .bg1{
     background-image: url(./assets/images/about-1.jpg);
 }
